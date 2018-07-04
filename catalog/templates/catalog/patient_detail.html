@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Patient Name: {{ patient}}</h1>
+
+<p><strong>Email : </strong> <a>{{ patient.address }}</a></p>
+<p><strong>Phone Number: </strong> {{ patient.phone_num }}</p>  
+
+<div style="margin-left:20px;margin-top:20px">
+<h4>Prescription</h4>
+
+{% for visit in patient.visits.all %}
+<hr>
+<p><strong>Date Visited </strong>{{visit.date_visited}}</p>
+<p><strong>Reason for visit :</strong> {{visit.what_for}}</p>
+<p><strong>Doctor Visited:</strong> {{visit.doctor_visited}}</p>
+<p class="text-muted"><strong>Id:</strong><a href="{{visit.get_absolute_url}}">{{visit.id}}</a></p>
+
+{% endfor %}
+</div>
+{% endblock %}

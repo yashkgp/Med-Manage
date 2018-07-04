@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1> Precription List</h1>
+
+    {% if prescription_list %}
+    <ul>
+
+      {% for prescription in prescription_list %}
+      <li>
+        <a href="{{ prescription.get_absolute_url }}">{{ prescription.id }}</a>
+        <p><strong>Date Visited :</strong>{{prescription.date_visited}}</p>
+        <p><strong>Doctor Visited :</strong>{{prescription.doctor_visited}}</p>
+        <p><strong>What for  :</strong>{{prescription.what_for}}</p>
+      </li>
+      {% endfor %}
+
+    </ul>
+
+    {% else %}
+      <p>There are no prescription registered.</p>
+    {% endif %}       
+{% endblock %}

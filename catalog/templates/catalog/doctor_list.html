@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1> List</h1>
+
+    {% if doctor_list %}
+    <ul>
+
+      {% for doctor in doctor_list %}
+      <li>
+        <a href="{{ doctor.get_absolute_url }}">{{ doctor.first_name }}</a> ({{doctor.specialization}})
+      </li>
+      {% endfor %}
+
+    </ul>
+
+    {% else %}
+      <p>There are no doctors registered.</p>
+    {% endif %}       
+{% endblock %}

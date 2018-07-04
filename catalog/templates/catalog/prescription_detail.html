@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+
+<h1>Prescription ID : {{ prescription.id }}</h1>
+
+<p><strong>Date Visited : </strong> <a>{{prescription.date_visited }}</a></p>
+<p><strong>Doctor Visited: </strong> {{ prescription.doctor_visited }}</p>  
+<p><strong>What for: </strong> {{ prescription.what_for }}</p>
+<p><strong>Next Scheluded Meet: </strong> {{ prescription.next_visit }}</p>
+<div style="margin-left:20px;margin-top:20px">
+<h4>Medicines</h4>
+
+{% for medicine in prescription.medicines.all %}
+<hr>
+<p><strong>Name </strong>{{medicine.name.name}}</p>
+<p><strong> Reason :</strong> {{medicine.name.reason}}</p>
+<p><strong>Dosage perday : </strong> {{medicine.dosage_perday}}</p>
+<p><strong>Start day : </strong> {{medicine.start_date}}</p>
+<p><strong>End Day : </strong> {{medicine.end_date}}</p>
+
+{% endfor %}
+</div>
+{% endblock %}
