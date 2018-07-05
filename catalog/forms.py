@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 import datetime #for checking renewal date range.
+from django.contrib.auth.forms import UserCreationForm
     
 from django import forms
 
@@ -22,5 +23,11 @@ class RenewBookForm(forms.Form):
 
         # Remember to always return the cleaned data.
         return data
-class SignInDoctor(form.Form):
+class SignInDoctor(UserCreationForm):
+    first_name = forms.CharField(max_length = 30)
+    last_name = forms.CharField(max_length = 30)
+    address = forms.CharField(max_length = 100)
+    specialization = forms.CharField(max_length = 100)
+    hospital  = forms.CharField(max_length= 10)
+    
     

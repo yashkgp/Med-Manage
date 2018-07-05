@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Doctors Name: {{ doctor.__str__ }}</h1>
+<h1>Doctors Name: {{ doctor.first_name }}  {{doctor.last_name}}</h1>
 
 <p><strong>Address : </strong> <a>{{ doctor.address }}</a></p>
 <p><strong>Specialization: </strong> {{ doctor.specialization }}</p>

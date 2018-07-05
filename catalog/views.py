@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 
 from .models import Book, Author, BookInstance, Genre, Doctor ,Patient ,Prescription  ,Med_data ,Medicine
-
+from .forms import SignInDoctor
 def index(request):
     """
     View function for home page of site.
@@ -208,5 +208,29 @@ class BookDelete(PermissionRequiredMixin, DeleteView):
     model = Book
     success_url = reverse_lazy('books')
     permission_required = 'catalog.can_mark_returned'
+
+from django.shortcuts import redirect
+from django.contrib.auth import login, authenticate
+
+def signupdoctor(request):
+    if (request.method=='POST'):
+        form = SignInDoctor(request.POST)
+        if form.is_valid() :
+            form.save()
+            first_name = form.cleaned_data.get('first_name')
+            last_name = form.cleaned_data.get('last_name')
+            address = form.cleaned_data.get('address')
+            specailization = form.cleaned_data.get('specialization')
+            hospital = form.cleaned_data.get('hospital')
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            Doctor.objects.create(first_name=first_name,last_name =last_name ,address=address,specialization = specailization,hospital= hospital)
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return HttpResponseRedirect(reverse('index') )
+    else :
+        form = SignInDoctor()
+    return render(request, 'signup_doctor.html', {'form': form}) 
+
 
 

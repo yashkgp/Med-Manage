@@ -8,13 +8,14 @@ urlpatterns = [
     path('books/', views.BookListView.as_view(), name='books'),
     path('doctors/',views.DoctorListView.as_view(),name='doctors'),
     path('patients/',views.PatientListView.as_view(),name ='patients'),
-    path('prescriptions/',views.PrecriptionListView.as_view()),
+    path('prescriptions/',views.PrecriptionListView.as_view(),name = 'prescriptions'),
     path('doctor/<int:pk>',views.DoctorDetailView.as_view(),name = 'doctor-detail'),
     path('patient/<int:pk>',views.PatientDetailView.as_view(),name = 'patient-detail'),
     path('prescription/<uuid:pk>',views.PrescriptionDetailView.as_view(),name = 'prescription-detail'),
     path('book/<int:pk>', views.BookDetailView.as_view(), name='book-detail'),
     path('authors/', views.AuthorListView.as_view(), name='authors'),
     path('author/<int:pk>', views.AuthorDetailView.as_view(), name='author-detail'),
+    path('signup_doctor/',views.signupdoctor,name = 'signup-doctor')
 ]
 
 
